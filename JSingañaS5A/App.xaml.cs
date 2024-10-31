@@ -9,7 +9,7 @@ namespace JSingañaS5A
         {
             InitializeComponent();
 
-            MainPage = new Views.Principal();
+            MainPage = new NavigationPage(new Views.Principal());
             PersonRepo = personRepositroy;
         }
     }

@@ -66,5 +66,65 @@ namespace JSingañaS5A.Utils
 
             return new List<Persona>();
         }
+
+        public void DeletePerson(int id)
+        {
+            try
+            {
+                Init();
+                var person = conn.Table<Persona>().FirstOrDefault(p => p.Id == id);
+                if (person != null)
+                {
+                    conn.Delete(person);
+                    StatusMessage = "Persona eliminada correctamente.";
+                }
+                else
+                {
+                    StatusMessage = "Persona no encontrada.";
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Error al eliminar: " + ex.Message;
+            }
+        }
+
+        public Persona GetPersonById(int id)
+        {
+            try
+            {
+                Init();
+                return conn.Find<Persona>(id);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Error al obtener persona: " + ex.Message;
+                return null;
+            }
+        }
+
+        public void UpdatePerson(int id, string newName)
+        {
+            try
+            {
+                Init();
+                var person = conn.Find<Persona>(id);
+                if (person != null)
+                {
+                    person.Name = newName;
+                    conn.Update(person);
+                    StatusMessage = "Persona actualizada correctamente.";
+                }
+                else
+                {
+                    StatusMessage = "Persona no encontrada.";
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Error al actualizar: " + ex.Message;
+            }
+        }
+
     }
 }

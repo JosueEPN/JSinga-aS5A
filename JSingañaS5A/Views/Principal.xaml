@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JSingañaS5A.Views.Principal"
              Title="Principal">
-    <VerticalStackLayout Padding="25">
+    <VerticalStackLayout Padding="25" 
+                         Spacing="20">
         
         <Label Text="Semana 5 sqlite"
            HorizontalTextAlignment="Center"
@@ -44,22 +45,43 @@
                     Clicked="Mostrar_Clicked" />
 
             <CollectionView x:Name="Listapersonas"
-                        Grid.Row="3"
-                        Grid.Column="0">
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="20"
+                            >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
                             <Label Text="{Binding Id}" Grid.Column="0"/>
                             <Label Text="{Binding Name}" Grid.Column="1" />
+
+                            <!-- Botón para Actualizar -->
+                            <Button x:Name="btnViewActualizar" 
+                                    Text="Actualizar"
+                                    Grid.Column="2"
+                                    Clicked="btnViewActualizar_Clicked"
+                                    CommandParameter="{Binding Id}" 
+                                    Margin="15,5"/>  
+
+                            <!-- Botón para Eliminar -->
+                            <Button x:Name="btnEliminar"
+                                    Text="Eliminar"
+                                    Grid.Column="3"
+                                    Clicked="btnEliminar_Clicked"
+                                    CommandParameter="{Binding Id}" 
+                                    Margin="15,5"/>  
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </Grid>
     </VerticalStackLayout>
 
